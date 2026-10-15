@@ -7,7 +7,7 @@ int hibasSorokSzama = 0;
 
 string[] sorok = File.ReadAllLines("jarmuvek.csv");
 
-foreach (string sor in sorok.Skip(1))
+foreach (var sor in sorok.Skip(1))
 {
     if (string.IsNullOrWhiteSpace(sor))
     {
@@ -35,7 +35,7 @@ foreach (string sor in sorok.Skip(1))
     }
     double teherbiras = 0;
 
-    if(tipus == "T" && !double.TryParse(adatok[3].Trim(), out teherbiras))
+    if (tipus == "T" && !double.TryParse(adatok[3].Trim(), out teherbiras))
     {
         hibasSorokSzama++;
         continue;
@@ -48,8 +48,10 @@ foreach (string sor in sorok.Skip(1))
     {
         jarmuvek.Add(new Teherauto(rendszam, alapar, teherbiras));
     }
-    Console.WriteLine($"--- Flotta Elemzés---");
+
     Console.WriteLine($"Sikeresen beolvasott jármű: {tipus} | Rendszám: {rendszam} | Alapár: {alapar} Ft | Teherbírás: {teherbiras} kg");
+}
+    Console.WriteLine($"--- Flotta Elemzés---");
     Console.WriteLine($"Kiszűrt hibás sorok száma: {hibasSorokSzama}");
     Console.WriteLine();
     Console.WriteLine("Járművek Listája");
@@ -63,4 +65,5 @@ foreach (string sor in sorok.Skip(1))
     Console.WriteLine();
     Console.WriteLine($"A flotta teljes adóterhe: {teljesAdo} Ft");
     Console.WriteLine($"{Jarmu.OsszesJarmuSzama}");
-}
+  
+
